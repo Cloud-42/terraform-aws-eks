@@ -1,2 +1,2 @@
-# terraform-aws-eks
-terraform-aws-eks
+## terraform-aws-eks
+Creates an EKS cluster.
