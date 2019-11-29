@@ -30,3 +30,7 @@ variable "eks_worker_ssh_key_name" {}
 variable "eks_worker_subnet_ids" {}
 variable "eks_worker_group_name" {}
 variable "eks_worker_ami" {}
+variable "eks_worker_on_demand_base_capacity" {}
+variable "eks_worker_on_demand_percentage_above_base_capacity" {}
+variable "eks_worker_spot_allocation_strategy" {}
+variable "eks_worker_instance_type" {}

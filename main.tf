@@ -18,20 +18,26 @@ module "eks-security" {
 module "eks-workers" {
   source = "./modules/eks-workers"
 
-  region                      = var.region
-  eks_cluster_name            = var.eks_cluster_name
-  eks_worker_sg_id            = module.eks-security.node_sg_id
-  eks_worker_instance_profile = module.eks-iam.node_instance_profile_name
+  region           = var.region
+  eks_cluster_name = var.eks_cluster_name
 
   # LC/ASG Settings
-  eks_worker_ssh_key_name = var.eks_worker_ssh_key_name
-  eks_worker_subnet_ids   = var.eks_worker_subnet_ids
-  eks_worker_group_name   = var.eks_worker_group_name
-  eks_worker_ami          = var.eks_worker_ami
- 
+  eks_worker_ssh_key_name       = var.eks_worker_ssh_key_name
+  eks_worker_subnet_ids         = var.eks_worker_subnet_ids
+  eks_worker_group_name         = var.eks_worker_group_name
+  eks_worker_ami                = var.eks_worker_ami
+  eks_iam_instance_profile_arn  = var.eks_iam_instance_profile_arn
+  eks_iam_instance_profile_name = var.eks_iam_instance_profile_name
+  eks_worker_security_group_ids = module.eks-security.node_sg_id
+
   # Userdata Vars
-  eks_api_endpoint            = aws_eks_cluster.this.endpoint
-  eks_api_ca                  = aws_eks_cluster.this.certificate_authority[0].data
+  eks_api_endpoint = aws_eks_cluster.this.endpoint
+  eks_api_ca       = aws_eks_cluster.this.certificate_authority[0].data
+
+  eks_worker_on_demand_base_capacity                  = var.eks_worker_on_demand_base_capacity
+  eks_worker_on_demand_percentage_above_base_capacity = var.eks_worker_on_demand_percentage_above_base_capacity
+  eks_worker_spot_allocation_strategy                 = var.eks_worker_spot_allocation_strategy
+  eks_worker_instance_type                            = var.eks_worker_instance_type
 }
 
 
