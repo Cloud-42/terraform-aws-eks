@@ -22,13 +22,14 @@ module "eks-workers" {
   eks_cluster_name = var.eks_cluster_name
 
   # LC/ASG Settings
-  eks_worker_ssh_key_name       = var.eks_worker_ssh_key_name
-  eks_worker_subnet_ids         = var.eks_worker_subnet_ids
-  eks_worker_group_name         = var.eks_worker_group_name
-  eks_worker_ami                = var.eks_worker_ami
-  eks_iam_instance_profile_arn  = var.eks_iam_instance_profile_arn
-  eks_iam_instance_profile_name = var.eks_iam_instance_profile_name
-  eks_worker_security_group_ids = module.eks-security.node_sg_id
+  eks_worker_lc_name                   = "testk8s"
+  eks_worker_ssh_key_name              = var.eks_worker_ssh_key_name
+  eks_worker_subnet_ids                = var.eks_worker_subnet_ids
+  eks_worker_group_name                = var.eks_worker_group_name
+  eks_worker_ami                       = var.eks_worker_ami
+  eks_worker_iam_instance_profile_arn  = var.eks_worker_iam_instance_profile_arn
+  eks_worker_iam_instance_profile_name = var.eks_worker_iam_instance_profile_name
+  eks_worker_security_group_ids        = module.eks-security.node_sg_id
 
   # Userdata Vars
   eks_api_endpoint = aws_eks_cluster.this.endpoint
@@ -36,7 +37,6 @@ module "eks-workers" {
 
   eks_worker_on_demand_base_capacity                  = var.eks_worker_on_demand_base_capacity
   eks_worker_on_demand_percentage_above_base_capacity = var.eks_worker_on_demand_percentage_above_base_capacity
-  eks_worker_spot_allocation_strategy                 = var.eks_worker_spot_allocation_strategy
   eks_worker_instance_type                            = var.eks_worker_instance_type
 }
 
@@ -51,7 +51,7 @@ resource "aws_eks_cluster" "this" {
   version  = var.kubernetes_version
 
   vpc_config {
-    subnet_ids              = split(",", var.subnet_ids)
+    subnet_ids              = var.subnet_ids
     security_group_ids      = [module.eks-security.cluster_sg_id]
     endpoint_private_access = var.endpoint_private_access
     endpoint_public_access  = var.endpoint_public_access

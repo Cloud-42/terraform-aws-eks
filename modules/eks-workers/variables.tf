@@ -27,13 +27,7 @@ variable "eks_worker_max_size" {
   type    = string
   default = "4"
 }
-variable "eks_worker_instance_profile" {
-  type = string
-}
 variable "eks_worker_group_name" {
-  type = string
-}
-variable "eks_worker_sg_id" {
   type = string
 }
 variable "eks_worker_subnet_ids" {
@@ -55,5 +49,29 @@ variable "eks_worker_health_check_type" {
 }
 variable "eks_worker_on_demand_base_capacity" {}
 variable "eks_worker_on_demand_percentage_above_base_capacity" {}
-variable "eks_worker_spot_allocation_strategy" {}
-variable "eks_worker_instance_type" {}
+variable "eks_worker_spot_allocation_strategy" {
+  description = "How to allocate capacity across the Spot pools. One of: lowest-price, capacity-optimized"
+  default     = "capacity-optimized"
+}
+variable "eks_worker_instance_type" {
+  type        = list(map(string)) 
+  default     = [] 
+}
+variable "eks_worker_lc_name" {}
+variable "eks_worker_tags" {
+  type    = map(string)
+  default = {}
+}
+variable "eks_worker_ebs_optimized" {
+  description = "EBS optimized for worker nodes"
+  default     = false
+}
+variable "eks_worker_capacity_reservation_preference" {
+  description = "Indicates the instance's Capacity Reservation preferences."
+  default     = "none"
+}
+
+variable "eks_worker_cpu_credits" {
+  description = "CPU credit option. One of: standard or unlimited"
+  default     = "standard"
+}
