@@ -23,7 +23,7 @@ resource "aws_launch_template" "template" {
   image_id      = var.eks_worker_ami
   key_name      = var.eks_worker_ssh_key_name
   iam_instance_profile {
-    name = var.eks_worker_iam_instance_profile_name
+    arn = var.eks_worker_iam_instance_profile_arn
   }
   monitoring {
     enabled = "${var.eks_worker_monitoring}"

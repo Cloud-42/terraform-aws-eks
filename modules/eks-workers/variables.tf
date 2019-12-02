@@ -42,7 +42,7 @@ variable "region" {
 variable "eks_worker_security_group_ids" {
   description = "A list of security group IDs to associate with."
 }
-variable "eks_worker_iam_instance_profile_name" {}
+variable "eks_worker_iam_instance_profile_arn" {}
 variable "eks_worker_health_check_type" {
   default = "EC2"
 }

@@ -14,7 +14,7 @@ output "node_iam_role_name" {
 }
 
 
-output "node_instance_profile_name" {
+output "node_iam_profile_arn" {
   description = "Nodes IAM Instance Profile"
-  value       = aws_iam_instance_profile.node_profile.name
+  value       = aws_iam_instance_profile.node_profile.arn
 }
