@@ -6,7 +6,6 @@ module "eks-iam" {
 
   eks_cluster_name = var.eks_cluster_name
 }
-
 module "eks-security" {
   source = "./modules/eks-security"
 
@@ -14,7 +13,6 @@ module "eks-security" {
   eks_cluster_name = var.eks_cluster_name
   vpc_id           = var.vpc_id
 }
-
 module "eks-workers" {
   source = "./modules/eks-workers"
 
@@ -38,12 +36,9 @@ module "eks-workers" {
   eks_worker_on_demand_percentage_above_base_capacity = var.eks_worker_on_demand_percentage_above_base_capacity
   eks_worker_instance_type                            = var.eks_worker_instance_type
 }
-
-
 # -----------------------------------------------
 # Control Plane
 # -----------------------------------------------
-
 resource "aws_eks_cluster" "this" {
   name     = var.eks_cluster_name
   role_arn = module.eks-iam.cluster_iam_role_arn
@@ -56,4 +51,3 @@ resource "aws_eks_cluster" "this" {
     endpoint_public_access  = var.endpoint_public_access
   }
 }
-

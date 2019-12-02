@@ -17,7 +17,7 @@ variable "eks_worker_ami_name" {
 }
 variable "eks_worker_desired_capacity" {
   type    = string
-  default = "3"
+  default = "2"
 }
 variable "eks_worker_min_size" {
   type    = string
@@ -25,7 +25,7 @@ variable "eks_worker_min_size" {
 }
 variable "eks_worker_max_size" {
   type    = string
-  default = "4"
+  default = "6"
 }
 variable "eks_worker_group_name" {
   type = string
