@@ -28,10 +28,6 @@ resource "aws_launch_template" "template" {
   monitoring {
     enabled = "${var.eks_worker_monitoring}"
   }
-  #network_interfaces {
-  #  associate_public_ip_address = "${var.eks_worker_associate_public_ip_address}"
-  #  security_groups             = ["${var.eks_worker_security_group_ids}"]
-  #}
   vpc_security_group_ids = ["${var.eks_worker_security_group_ids}"]
 
   tag_specifications {

@@ -27,8 +27,7 @@ module "eks-workers" {
   eks_worker_subnet_ids                = var.eks_worker_subnet_ids
   eks_worker_group_name                = var.eks_worker_group_name
   eks_worker_ami                       = var.eks_worker_ami
-  eks_worker_iam_instance_profile_arn  = var.eks_worker_iam_instance_profile_arn
-  eks_worker_iam_instance_profile_name = var.eks_worker_iam_instance_profile_name
+  eks_worker_iam_instance_profile_name = module.eks-iam.node_iam_role_name 
   eks_worker_security_group_ids        = module.eks-security.node_sg_id
 
   # Userdata Vars

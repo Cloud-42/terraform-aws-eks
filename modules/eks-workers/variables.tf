@@ -39,7 +39,6 @@ variable "eks_worker_associate_public_ip_address" {
 variable "region" {
   type = string
 }
-variable "eks_worker_iam_instance_profile_arn" {}
 variable "eks_worker_security_group_ids" {
   description = "A list of security group IDs to associate with."
 }
