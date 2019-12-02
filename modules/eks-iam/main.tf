@@ -71,6 +71,6 @@ resource "aws_iam_role_policy_attachment" "attach_container_registry" {
 }
 
 resource "aws_iam_instance_profile" "node_profile" {
-  name = "${var.eks_cluster_name}"
-  role = "${aws_iam_role.node.name}"
+  name = "${var.eks_cluster_name}-node"
+  role = aws_iam_role.node.name
 }
