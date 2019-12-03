@@ -6,7 +6,8 @@ Upon launching the stack the following resources will be created:
  * ec2 Launch Template.
  * ASG worker nodes.
  * IAM roles - Control Plane and worker nodes.
- * Security Groups - Control Plane and worker nodes. 
+ * Security Groups - Control Plane and worker nodes.
+ * CloudWatch log group.
 
 **Note:**
 The intial release has been tested and works however this module should be considered "under-development" as further updates and improvments are expected.
