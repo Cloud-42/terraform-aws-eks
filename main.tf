@@ -40,6 +40,7 @@ module "eks-workers" {
 # Control Plane
 # -----------------------------------------------
 resource "aws_eks_cluster" "this" {
+  depends_on = ["aws_cloudwatch_log_group.eks"]
   name     = var.eks_cluster_name
   role_arn = module.eks-iam.cluster_iam_role_arn
   version  = var.kubernetes_version
@@ -50,4 +51,11 @@ resource "aws_eks_cluster" "this" {
     endpoint_private_access = var.endpoint_private_access
     endpoint_public_access  = var.endpoint_public_access
   }
+  enabled_cluster_log_types = var.enabled_cluster_log_types
+}
+
+# LogGroup
+resource "aws_cloudwatch_log_group" "eks" {
+  name              = "/aws/eks/${var.eks_cluster_name}/cluster"
+  retention_in_days = var.log_retention_in_days
 }
