@@ -74,7 +74,6 @@ resource "aws_security_group_rule" "node_ingress_cluster" {
   to_port                  = 65535
   type                     = "ingress"
 }
-
 # -----------------------------------------------------------
 # K8S API Server Communication
 # -----------------------------------------------------------
@@ -87,12 +86,3 @@ resource "aws_security_group_rule" "cluster_ingress_node_https" {
   to_port                  = 443
   type                     = "ingress"
 }
-
-
-
-
-
-
-
-
-
