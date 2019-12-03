@@ -93,7 +93,7 @@ terraform output config-map-aws-auth > config-map-aws-auth.yaml
 kubectl apply -f config-map-aws-auth.yaml
 ```
 
-
+#### Terraform commands
 * To initialise the module run: terraform init
 * To update the module run    : terraform get --update
 * To see a plan of changes    : terraform plan
