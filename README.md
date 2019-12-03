@@ -87,3 +87,8 @@ kubectl apply -f config-map-aws-auth.yaml
 * To update the module run    : terraform get --update
 * To see a plan of changes    : terraform plan
 * To apply                    : terraform apply  
+
+### Useful links
+<a href="https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html" target="_blank">https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html</a>
+<a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" target="_blank">https://kubernetes.io/docs/tasks/tools/install-kubectl/</a>
+
