@@ -8,6 +8,9 @@ Upon launching the stack the following resources will be created:
  * IAM roles - Control Plane and worker nodes.
  * Security Groups - Control Plane and worker nodes. 
 
+**Note:**
+The intial release has been tested and works however this module should be considered "under-development" as further updates and improvments are expected.
+
 ## Dependencies and Prerequisites
  * Terraform v0.12. or higher
  * AWS account
