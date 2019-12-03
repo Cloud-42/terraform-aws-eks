@@ -32,9 +32,9 @@ Upon launching the stack the following resources will be created:
 | `` |  |
 
 ## Outputs
- * 
- * 
-
+ * endpoint
+ * kubeconfig-certificate-authority-data
+  
 ## Usage
 
 To import the module add the following to the your TF file:
@@ -76,10 +76,23 @@ module "eks" {
 # -----------------------
 # Echo out configs
 # -----------------------
-output "kubeconfig" { value = module.eks.kubeconfig } 
+output "kubeconfig" { value = module.eks.kubeconfig }
 
 output "config-map-aws-auth" { value = module.eks.config-map-aws-auth }
+
+### Setup kubectl
 ```
+terraform output kubeconfig > ~/.kube/eks-cluster
+export KUBECONFIG=~/.kube/eks-cluster
+```
+
+### Authorize worker nodes
+```
+terraform output config-map-aws-auth > config-map-aws-auth.yaml
+kubectl apply -f config-map-aws-auth.yaml
+```
+
+
 * To initialise the module run: terraform init
 * To update the module run    : terraform get --update
 * To see a plan of changes    : terraform plan
