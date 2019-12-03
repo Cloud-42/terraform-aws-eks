@@ -2,13 +2,11 @@
 
 Upon launching the stack the following resources will be created:
 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
+ * EKS cluster.
+ * ec2 Launch Template.
+ * ASG worker nodes.
+ * IAM roles - Control Plane and worker nodes.
+ * Security Groups - Control Plane and worker nodes. 
 
 ## Dependencies and Prerequisites
  * Terraform v0.12. or higher
@@ -19,15 +17,6 @@ Upon launching the stack the following resources will be created:
 ## Variables
 | Variable | Meaning |
 | :------- | :----- |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
 | `` |  |
 | `` |  |
 
