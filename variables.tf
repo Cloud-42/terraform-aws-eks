@@ -41,5 +41,3 @@ variable "eks_worker_ami" {}
 variable "eks_worker_on_demand_base_capacity" {}
 variable "eks_worker_on_demand_percentage_above_base_capacity" {}
 variable "eks_worker_instance_type" {}
-#variable "eks_worker_iam_instance_profile_arn" {}
-#variable "eks_worker_iam_instance_profile_name" {}
