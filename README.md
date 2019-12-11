@@ -21,8 +21,23 @@ The intial release has been tested and works however this module should be consi
 ## Variables
 | Variable | Meaning |
 | :------- | :----- |
-| `` |  |
-| `` |  |
+| management_ip | Management IP which is granted access to the control plane  |
+| endpoint_private_access | Enable private API server endpoint access |
+| endpoint_public_access | Enable public API server endpoint access |
+| subnet_ids | Subnets ids where the control plane should be deployed |
+| kubernetes_version | K8s version |
+| eks_cluster_name | Cluster Name  |
+| vpc_id | VPC id  |
+| log_retention_in_days  | CloudWatch log group retention in days  |
+| enabled_cluster_log_types | Cluster log types to enable |
+| region | AWS region |
+| eks_worker_ssh_key_name | EKS workers - default ssh key to launch hosts with  |
+| eks_worker_subnet_ids | EKS workers - Subnets in which to launch worker nodes  |
+| eks_worker_group_name | EKS workers - group name |
+| eks_worker_ami | EKS workers - AMI to use for launching worker nodes |
+| eks_worker_on_demand_base_capacity | EKS workers - minimum amount of desired capacity that must be fulfilled by on-demand instances.  |
+| eks_worker_on_demand_percentage_above_base_capacity | EKS workers - Percentage split between on-demand and Spot instances above the base on-demand capacity  |
+| eks_worker_instance_type | EKS workers - instance type |
 
 ## Outputs
  * endpoint
