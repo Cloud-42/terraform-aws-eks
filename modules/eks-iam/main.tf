@@ -70,7 +70,7 @@ resource "aws_iam_role_policy_attachment" "attach_container_registry" {
   role       = "${aws_iam_role.node.name}"
 }
 
-resource "aws_iam_role_policy_attachment" "attach_container_registry" {
+resource "aws_iam_role_policy_attachment" "attach_ssm_readonly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
   role       = "${aws_iam_role.node.name}"
 }
