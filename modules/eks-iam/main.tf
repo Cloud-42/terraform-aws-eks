@@ -174,6 +174,7 @@ resource "aws_iam_policy" "alb_ingress" {
         "elasticloadbalancing:CreateTargetGroup",
         "elasticloadbalancing:DeleteListener",
         "elasticloadbalancing:DeleteLoadBalancer",
+        "elasticloadbalancing:DescribeListenerCertificates",
         "elasticloadbalancing:DeleteRule",
         "elasticloadbalancing:DeleteTargetGroup",
         "elasticloadbalancing:DeregisterTargets",
