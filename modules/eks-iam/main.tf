@@ -56,7 +56,7 @@ POLICY
 }
 resource "aws_iam_role_policy_attachment" "attach_worker_node_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-  role       = "${aws_iam_role.node.name}"
+  role       = aws_iam_role.node.name
 }
 resource "aws_iam_role_policy_attachment" "attach_eks_cni_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
