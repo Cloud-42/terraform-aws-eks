@@ -24,11 +24,11 @@ variable "vpc_id" {
 }
 variable "log_retention_in_days" {
   description = "Log retention in days"
-  default = "14"
+  default     = "14"
 }
 variable "enabled_cluster_log_types" {
   description = "Enabled log types. https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html"
-  default = ["api", "authenticator", "controllerManager", "scheduler"]
+  default     = ["api", "authenticator", "controllerManager", "scheduler"]
 }
 #
 # EKS Worker Vars

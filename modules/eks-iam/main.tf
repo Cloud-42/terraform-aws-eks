@@ -60,15 +60,15 @@ resource "aws_iam_role_policy_attachment" "attach_worker_node_policy" {
 }
 resource "aws_iam_role_policy_attachment" "attach_eks_cni_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  role       = "${aws_iam_role.node.name}"
+  role       = aws_iam_role.node.name
 }
 resource "aws_iam_role_policy_attachment" "attach_container_registry" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  role       = "${aws_iam_role.node.name}"
+  role       = aws_iam_role.node.name
 }
 resource "aws_iam_role_policy_attachment" "attach_ssm_readonly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
-  role       = "${aws_iam_role.node.name}"
+  role       = aws_iam_role.node.name
 }
 resource "aws_iam_instance_profile" "node_profile" {
   name = "${var.eks_cluster_name}-node"
@@ -78,8 +78,8 @@ resource "aws_iam_instance_profile" "node_profile" {
 # Attach External DNS Policy to Node Role
 # ---------------------------------
 resource "aws_iam_role_policy_attachment" "attach_external_dns" {
-  role       = "${aws_iam_role.node.name}"
-  policy_arn = "${aws_iam_policy.external_dns.arn}"
+  role       = aws_iam_role.node.name
+  policy_arn = aws_iam_policy.external_dns.arn
 }
 # ------------------
 # External DNS IAM Policy ( https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/aws.md#iam-permissions )
@@ -120,8 +120,8 @@ EOF
 # Attach AWS ALB ingress Policy to Node Role
 # ---------------------------------
 resource "aws_iam_role_policy_attachment" "attach_alb_ingress" {
-  role       = "${aws_iam_role.node.name}"
-  policy_arn = "${aws_iam_policy.alb_ingress.arn}"
+  role       = aws_iam_role.node.name
+  policy_arn = aws_iam_policy.alb_ingress.arn
 }
 # ------------------
 # AWS ALB ingress IAM Policy ( https://aws.amazon.com/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/ )

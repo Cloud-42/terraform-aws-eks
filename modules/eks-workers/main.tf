@@ -26,21 +26,19 @@ resource "aws_launch_template" "template" {
     arn = var.eks_worker_iam_instance_profile_arn
   }
   monitoring {
-    enabled = "${var.eks_worker_monitoring}"
+    enabled = var.eks_worker_monitoring
   }
   vpc_security_group_ids = ["${var.eks_worker_security_group_ids}"]
 
   tag_specifications {
     resource_type = "instance"
 
-    tags = "${
-      map(
-        "Name", "kubernetes.io-${var.eks_cluster_name}-node",
-        "kubernetes.io/cluster/${var.eks_cluster_name}", "owned",
-      )
-    }"
+  tags = {
+    Name   = "kubernetes.io-${var.eks_cluster_name}-node"
+    "kubernetes.io/cluster/${var.eks_cluster_name}"= "owned"
   }
-  user_data = "${base64encode(data.template_file.userdata.rendered)}"
+  }
+  user_data = base64encode(data.template_file.userdata.rendered)
 
   lifecycle {
     create_before_destroy = true
@@ -60,8 +58,8 @@ resource "aws_autoscaling_group" "this" {
 
     launch_template {
       launch_template_specification {
-        launch_template_id = "${aws_launch_template.template.id}"
-        version = "${aws_launch_template.template.latest_version}"
+        launch_template_id = aws_launch_template.template.id
+        version = aws_launch_template.template.latest_version
       }
    
    #
@@ -95,4 +93,3 @@ resource "aws_autoscaling_group" "this" {
     propagate_at_launch = true
   }
 }
-

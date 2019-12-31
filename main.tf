@@ -20,13 +20,13 @@ module "eks-workers" {
   eks_cluster_name = var.eks_cluster_name
 
   # LC/ASG Settings
-  eks_worker_lc_name                   = "testk8s"
-  eks_worker_ssh_key_name              = var.eks_worker_ssh_key_name
-  eks_worker_subnet_ids                = var.eks_worker_subnet_ids
-  eks_worker_group_name                = var.eks_worker_group_name
-  eks_worker_ami                       = var.eks_worker_ami
-  eks_worker_iam_instance_profile_arn  = module.eks-iam.node_iam_profile_arn 
-  eks_worker_security_group_ids        = module.eks-security.node_sg_id
+  eks_worker_lc_name                  = "testk8s"
+  eks_worker_ssh_key_name             = var.eks_worker_ssh_key_name
+  eks_worker_subnet_ids               = var.eks_worker_subnet_ids
+  eks_worker_group_name               = var.eks_worker_group_name
+  eks_worker_ami                      = var.eks_worker_ami
+  eks_worker_iam_instance_profile_arn = module.eks-iam.node_iam_profile_arn
+  eks_worker_security_group_ids       = module.eks-security.node_sg_id
 
   # Userdata Vars
   eks_api_endpoint = aws_eks_cluster.this.endpoint
@@ -41,9 +41,9 @@ module "eks-workers" {
 # -----------------------------------------------
 resource "aws_eks_cluster" "this" {
   depends_on = [aws_cloudwatch_log_group.eks]
-  name     = var.eks_cluster_name
-  role_arn = module.eks-iam.cluster_iam_role_arn
-  version  = var.kubernetes_version
+  name       = var.eks_cluster_name
+  role_arn   = module.eks-iam.cluster_iam_role_arn
+  version    = var.kubernetes_version
 
   vpc_config {
     subnet_ids              = var.subnet_ids
