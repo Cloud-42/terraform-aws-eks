@@ -20,7 +20,7 @@ module "eks-workers" {
   eks_cluster_name = var.eks_cluster_name
 
   # LC/ASG Settings
-  eks_worker_lc_name                  = "testk8s"
+  eks_worker_lc_name                  = "${var.eks_cluster_name}-workers-"
   eks_worker_ssh_key_name             = var.eks_worker_ssh_key_name
   eks_worker_subnet_ids               = var.eks_worker_subnet_ids
   eks_worker_group_name               = var.eks_worker_group_name
