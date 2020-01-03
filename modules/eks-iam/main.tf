@@ -75,6 +75,43 @@ resource "aws_iam_instance_profile" "node_profile" {
   role = aws_iam_role.node.name
 }
 # ---------------------------------
+# Attach Logging Policy to Node Role
+# ---------------------------------
+resource "aws_iam_role_policy_attachment" "attach_logging" {
+  role       = aws_iam_role.node.name
+  policy_arn = aws_iam_policy.logging.arn
+}
+# ------------------
+# Logging Policy - Used for example by fluentd - CWLogs. https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-setup-logs.html
+# ------------------
+resource "aws_iam_policy" "logging" {
+  name        = "${var.eks_cluster_name}_node_logging_policy"
+  path        = "/"
+  description = "${var.eks_cluster_name} Logging IAM Policy"
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "logs",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams"
+            ],
+            "Resource": [
+                "arn:aws:logs:*:*:*"
+            ]
+        }
+    ]
+}
+EOF
+}
+# ---------------------------------
 # Attach External DNS Policy to Node Role
 # ---------------------------------
 resource "aws_iam_role_policy_attachment" "attach_external_dns" {
