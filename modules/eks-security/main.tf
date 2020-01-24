@@ -23,7 +23,7 @@ resource "aws_security_group" "cluster" {
 # -----------------------------------------------------------
 
 resource "aws_security_group_rule" "cluster_sg_ingress" {
-  cidr_blocks       = [var.management_ip]
+  cidr_blocks       = [var.management_cidr]
   description       = "Allow management IP to API Server"
   from_port         = 443
   protocol          = "tcp"

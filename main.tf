@@ -9,7 +9,7 @@ module "eks-iam" {
 module "eks-security" {
   source = "./modules/eks-security"
 
-  management_ip    = var.management_ip
+  management_cidr  = var.management_cidr
   eks_cluster_name = var.eks_cluster_name
   vpc_id           = var.vpc_id
 }
@@ -50,6 +50,7 @@ resource "aws_eks_cluster" "this" {
     security_group_ids      = [module.eks-security.cluster_sg_id]
     endpoint_private_access = var.endpoint_private_access
     endpoint_public_access  = var.endpoint_public_access
+    public_access_cidrs     = var.public_access_cidrs
   }
   enabled_cluster_log_types = var.enabled_cluster_log_types
 }
