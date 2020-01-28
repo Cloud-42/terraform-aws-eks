@@ -20,7 +20,8 @@ Upon launching the stack the following resources will be created:
  * CloudWatch log group.
 
 ## Dependencies and Prerequisites
- * Terraform v0.12. or higher
+ * Terraform v0.12.20 or higher
+ * AWS provider 2.44.0 or higher
  * AWS account
  * VPC with private & public subnets
  * Host with Terraform , AWS CLI & kubectl installed
