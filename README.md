@@ -28,7 +28,7 @@ Upon launching the stack the following resources will be created:
 ## Variables
 | Variable | Meaning |
 | :------- | :----- |
-| management_ip | Management IP which is granted access to the control plane  |
+| management_cidr| CIDR range which is granted access to the control plane. Usually the VPC CIDR range or similar. Not to be confused with public_access_cidrs.  |
 | endpoint_private_access | Enable private API server endpoint access |
 | endpoint_public_access | Enable public API server endpoint access |
 | subnet_ids | Subnets ids where the control plane should be deployed |
@@ -45,6 +45,7 @@ Upon launching the stack the following resources will be created:
 | eks_worker_on_demand_base_capacity | EKS workers - minimum amount of desired capacity that must be fulfilled by on-demand instances.  |
 | eks_worker_on_demand_percentage_above_base_capacity | EKS workers - Percentage split between on-demand and Spot instances above the base on-demand capacity  |
 | eks_worker_instance_type | EKS workers - instance type |
+| public_access_cidrs | List of CIDR blocks that can access the public endpoint when it is enabled |
 
 ## Outputs
  * endpoint
@@ -64,7 +65,7 @@ module "eks" {
   subnet_ids       = ["${element(split(",", module.vpc.subnets_public), 0)}","${element(split(",", module.vpc.subnets_public), 1)}","${element(split(",", module.vpc.subnets_private), 0)}","${element(split(",", module.vpc.subnets_private), 1)}"]
   eks_cluster_name = var.eks_name
   vpc_id           = module.vpc.vpc_id
-  management_ip    = var.management_ip
+  management_cidr  = var.management_cidr
   region           = var.aws_region
   # -------------
   # Workers
