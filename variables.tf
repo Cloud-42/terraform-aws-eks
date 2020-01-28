@@ -62,3 +62,18 @@ variable "eks_worker_on_demand_percentage_above_base_capacity" {
 variable "eks_worker_instance_type" {
   description = "ec2 instance type for worker nodes"
 }
+variable "eks_worker_desired_capacity" {
+  description = "Desired number of EKS Worker nodes"
+  type        = string
+  default     = "2"
+}
+variable "eks_worker_min_size" {
+  description = "Minimum number of EKS Worker nodes"
+  type        = string
+  default     = "2"
+}
+variable "eks_worker_max_size" {
+  description = "Maximum number of EKS Worker nodes"
+  type        = string
+  default     = "6"
+}

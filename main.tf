@@ -27,6 +27,9 @@ module "eks-workers" {
   eks_worker_ami                      = var.eks_worker_ami
   eks_worker_iam_instance_profile_arn = module.eks-iam.node_iam_profile_arn
   eks_worker_security_group_ids       = module.eks-security.node_sg_id
+  eks_worker_desired_capacity         = var.eks_worker_desired_capacity
+  eks_worker_max_size                 = var.eks_worker_max_size
+  eks_worker_min_size                 = var.eks_worker_min_size
 
   # Userdata Vars
   eks_api_endpoint = aws_eks_cluster.this.endpoint

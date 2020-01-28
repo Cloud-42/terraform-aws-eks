@@ -45,6 +45,9 @@ Upon launching the stack the following resources will be created:
 | eks_worker_on_demand_base_capacity | EKS workers - minimum amount of desired capacity that must be fulfilled by on-demand instances.  |
 | eks_worker_on_demand_percentage_above_base_capacity | EKS workers - Percentage split between on-demand and Spot instances above the base on-demand capacity  |
 | eks_worker_instance_type | EKS workers - instance type |
+| eks_worker_desired_capacity | Desired number of EKS Worker nodes  |
+| eks_worker_min_size | Minimum number of EKS Worker nodes |
+| eks_worker_max_size | Maximum number of EKS Worker nodes |
 | public_access_cidrs | List of CIDR blocks that can access the public endpoint when it is enabled |
 
 ## Outputs
