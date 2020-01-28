@@ -33,7 +33,7 @@ variable "enabled_cluster_log_types" {
 variable "public_access_cidrs" {
   type        = list(string)
   description = "List of CIDR blocks that can access the public endpoint when it is enabled"
-  default     = "0.0.0.0/0"
+  default     = ["0.0.0.0/0"]
 }
 #
 # EKS Worker Vars
