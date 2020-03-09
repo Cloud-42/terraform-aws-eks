@@ -24,14 +24,14 @@ POLICY
 # ---------------------------------------------------
 resource "aws_iam_role_policy_attachment" "cluster_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role = aws_iam_role.cluster.name
+  role       = aws_iam_role.cluster.name
 }
 # ---------------------------------------------------
 # Attach AmazonEKSServicePolicy
 # ---------------------------------------------------
 resource "aws_iam_role_policy_attachment" "service_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-  role = aws_iam_role.cluster.name
+  role       = aws_iam_role.cluster.name
 }
 # ---------------------------------------------------
 # Nodes IAM Role
@@ -175,9 +175,9 @@ resource "aws_iam_policy" "alb_ingress" {
     {
       "Effect": "Allow",
       "Action": [
-        "acm:DescribeCertificate",
-        "acm:ListCertificates",
-        "acm:GetCertificate"
+        "acm:Describe*",
+        "acm:List*",
+        "acm:Get*"
       ],
       "Resource": "*"
     },
@@ -189,12 +189,7 @@ resource "aws_iam_policy" "alb_ingress" {
         "ec2:CreateTags",
         "ec2:DeleteTags",
         "ec2:DeleteSecurityGroup",
-        "ec2:DescribeInstances",
-        "ec2:DescribeInstanceStatus",
-        "ec2:DescribeSecurityGroups",
-        "ec2:DescribeSubnets",
-        "ec2:DescribeTags",
-        "ec2:DescribeVpcs",
+        "ec2:Describe*",
         "ec2:ModifyInstanceAttribute",
         "ec2:ModifyNetworkInterfaceAttribute",
         "ec2:RevokeSecurityGroupIngress"
@@ -211,19 +206,10 @@ resource "aws_iam_policy" "alb_ingress" {
         "elasticloadbalancing:CreateTargetGroup",
         "elasticloadbalancing:DeleteListener",
         "elasticloadbalancing:DeleteLoadBalancer",
-        "elasticloadbalancing:DescribeListenerCertificates",
+        "elasticloadbalancing:Describe*",
         "elasticloadbalancing:DeleteRule",
         "elasticloadbalancing:DeleteTargetGroup",
         "elasticloadbalancing:DeregisterTargets",
-        "elasticloadbalancing:DescribeListeners",
-        "elasticloadbalancing:DescribeLoadBalancers",
-        "elasticloadbalancing:DescribeLoadBalancerAttributes",
-        "elasticloadbalancing:DescribeRules",
-        "elasticloadbalancing:DescribeSSLPolicies",
-        "elasticloadbalancing:DescribeTags",
-        "elasticloadbalancing:DescribeTargetGroups",
-        "elasticloadbalancing:DescribeTargetGroupAttributes",
-        "elasticloadbalancing:DescribeTargetHealth",
         "elasticloadbalancing:ModifyListener",
         "elasticloadbalancing:ModifyLoadBalancerAttributes",
         "elasticloadbalancing:ModifyRule",
@@ -235,6 +221,15 @@ resource "aws_iam_policy" "alb_ingress" {
         "elasticloadbalancing:SetSecurityGroups",
         "elasticloadbalancing:SetSubnets",
         "elasticloadbalancing:SetWebACL"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateServiceLinkedRole",
+        "iam:Get*",
+        "iam:List*"
       ],
       "Resource": "*"
     },

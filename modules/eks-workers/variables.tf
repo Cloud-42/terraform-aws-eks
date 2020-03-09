@@ -53,8 +53,8 @@ variable "eks_worker_spot_allocation_strategy" {
   default     = "capacity-optimized"
 }
 variable "eks_worker_instance_type" {
-  type        = list(map(string)) 
-  default     = [] 
+  type    = list(map(string))
+  default = []
 }
 variable "eks_worker_lc_name" {}
 variable "eks_worker_tags" {

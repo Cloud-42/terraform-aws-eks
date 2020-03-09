@@ -33,10 +33,10 @@ resource "aws_launch_template" "template" {
   tag_specifications {
     resource_type = "instance"
 
-  tags = {
-    Name   = "kubernetes.io-${var.eks_cluster_name}-node"
-    "kubernetes.io/cluster/${var.eks_cluster_name}"= "owned"
-  }
+    tags = {
+      Name                                            = "kubernetes.io-${var.eks_cluster_name}-node"
+      "kubernetes.io/cluster/${var.eks_cluster_name}" = "owned"
+    }
   }
   user_data = base64encode(data.template_file.userdata.rendered)
 
@@ -59,18 +59,18 @@ resource "aws_autoscaling_group" "this" {
     launch_template {
       launch_template_specification {
         launch_template_id = aws_launch_template.template.id
-        version = aws_launch_template.template.latest_version
+        version            = aws_launch_template.template.latest_version
       }
-   
-   #
-   # Dynamic block to allow for multiple instance types
-   # 
-   dynamic "override" {
+
+      #
+      # Dynamic block to allow for multiple instance types
+      # 
+      dynamic "override" {
         for_each = var.eks_worker_instance_type
-           content {
-             instance_type = override.value["instance_type"]
-       }
-    }
+        content {
+          instance_type = override.value["instance_type"]
+        }
+      }
     }
 
     instances_distribution {
