@@ -14,7 +14,7 @@ variable "subnet_ids" {
 }
 variable "kubernetes_version" {
   description = "Kubernetes version"
-  default     = "1.14"
+  default     = "1.16"
 }
 variable "eks_cluster_name" {
   description = "Cluster name"
