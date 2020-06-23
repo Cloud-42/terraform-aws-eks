@@ -77,3 +77,7 @@ variable "eks_worker_max_size" {
   type        = string
   default     = "6"
 }
+variable "enable_CWAgentPolicy" {
+  description = "Allows for optional attaching of CloudWatchAgentServerPolicy for nodes"
+  default     = "0"
+}

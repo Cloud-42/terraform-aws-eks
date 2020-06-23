@@ -270,3 +270,10 @@ resource "aws_iam_policy" "alb_ingress" {
 }
 EOF
 }
+# Optional CloudWatchAgentServerPolicy - Not added by default 
+resource "aws_iam_role_policy_attachment" "attach_CloudWatchAgentServerPolicy" {
+  count      = var.enable_CWAgentPolicy != 0 ? 1 : 0
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+  role       = aws_iam_role.node.name
+}
+
