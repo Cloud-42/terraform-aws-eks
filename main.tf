@@ -5,7 +5,6 @@ module "eks-iam" {
   source = "./modules/eks-iam"
 
   eks_cluster_name     = var.eks_cluster_name
-  enable_CWAgentPolicy = var.enable_CWAgentPolicy
 }
 module "eks-security" {
   source = "./modules/eks-security"

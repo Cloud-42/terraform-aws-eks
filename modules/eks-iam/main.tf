@@ -101,12 +101,25 @@ resource "aws_iam_policy" "logging" {
                 "logs:CreateLogGroup",
                 "logs:PutLogEvents",
                 "logs:DescribeLogGroups",
-                "logs:DescribeLogStreams"
+                "logs:DescribeLogStreams",
+                "cloudwatch:PutMetricData",
+                "ec2:DescribeVolumes",
+                "ec2:DescribeTags"
             ],
             "Resource": [
-                "arn:aws:logs:*:*:*"
+                "*"
             ]
-        }
+        },
+        {
+            "Sid": "GetParameter",
+            "Effect": "Allow",
+            "Action": [
+               "ssm:GetParameter"
+             ],
+             "Resource": [
+                "arn:aws:ssm:*:*:parameter/AmazonCloudWatch-*"
+             ]
+         }  
     ]
 }
 EOF
